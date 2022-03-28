@@ -3,6 +3,7 @@ package com.example.giphlab.di
 import com.example.giphlab.BuildConfig
 import com.example.giphlab.Constants
 import com.example.giphlab.data.remote.NetworkDataSource
+import com.example.giphlab.data.remote.RequestInterceptor
 import com.example.giphlab.data.remote.WebService
 import com.example.giphlab.domain.GiphLabRepository
 import com.google.gson.GsonBuilder
@@ -32,6 +33,7 @@ object AppModule {
         }
 
         val okHttpClient = OkHttpClient.Builder()
+            .addInterceptor(RequestInterceptor())
             .addInterceptor(httpLogger)
             .build()
 
