@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
-    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -35,13 +37,38 @@ android {
 }
 
 dependencies {
+    implementation "androidx.core:core-ktx:$rootProject.core"
+    implementation "androidx.appcompat:appcompat:$rootProject.appcompat"
 
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'com.google.android.material:material:1.5.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    // Ui
+    implementation "com.google.android.material:material:$rootProject.material"
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintlayout"
+
+    // Test
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation "androidx.test.ext:junit:$rootProject.junit"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espresso"
+
+    // Lifecycle
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleExtensions"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$rootProject.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$rootProject.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycle"
+    implementation "androidx.fragment:fragment-ktx:$rootProject.fragment"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
+
+    // DI
+    implementation "com.google.dagger:hilt-android:$rootProject.hilt"
+    kapt "com.google.dagger:hilt-android-compiler:$rootProject.hilt"
+
+    // Network
+    implementation("com.squareup.retrofit2:retrofit:$rootProject.retrofit") {
+        exclude module: 'okhttp'
+    }
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit"
+    implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttp"
+    implementation "com.squareup.okhttp3:okhttp-urlconnection:$rootProject.okhttp"
+    implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp"
+    implementation "com.google.code.gson:gson:$rootProject.gson"
 }
