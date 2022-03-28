@@ -3,6 +3,7 @@ package com.example.giphlab.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.giphlab.R
+import com.example.giphlab.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
