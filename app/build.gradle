@@ -57,10 +57,16 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$rootProject.lifecycle"
     implementation "androidx.fragment:fragment-ktx:$rootProject.fragment"
 
+    //COROUTINE
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
 
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
+    //NAVIGATION COMPONENT
+    implementation "androidx.navigation:navigation-fragment-ktx:$rootProject.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$rootProject.navigation"
+
+    //GLIDE
+    implementation "com.github.bumptech.glide:glide:$rootProject.glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glide"
 
     // DI
     implementation "com.google.dagger:hilt-android:$rootProject.hilt"
