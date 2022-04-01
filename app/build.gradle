@@ -33,6 +33,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        dataBinding true
     }
 }
 
@@ -57,6 +58,9 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:$rootProject.fragment"
 
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
+
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
 
     // DI
     implementation "com.google.dagger:hilt-android:$rootProject.hilt"
