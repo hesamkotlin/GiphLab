@@ -1,11 +1,16 @@
 package com.example.giphlab.ui
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.giphlab.data.model.GiphLab
 import com.example.giphlab.data.remote.Resource
 import com.example.giphlab.domain.GiphLabRepository
+import com.example.giphlab.shared.model.GifModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,19 +19,23 @@ class MainViewModel @Inject constructor(
     private val repository: GiphLabRepository
 ) : ViewModel() {
 
-    fun getTrends() {
-        viewModelScope.launch {
-            val result = repository.getTrending()
+    private val mGifs = MutableLiveData<List<GifModel>?>()
+    val gifs: LiveData<List<GifModel>?> = mGifs
 
-            when (result) {
+    fun getTrends() {
+        viewModelScope.launch(Dispatchers.IO) {
+
+            when (val result = repository.getTrending()) {
                 is Resource.Loading -> {
-                    // ToDo
+                    Log.d("hesam", "Loading")
                 }
                 is Resource.Success -> {
                     Log.d("hesam", "the request has been successful")
+                    Log.d("hesam", result.data.toString())
+                    mGifs.postValue(result.data)
                 }
                 is Resource.Failure -> {
-                    // ToDo
+                    Log.d("hesam", "Failure")
                 }
             }
         }
