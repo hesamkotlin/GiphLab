@@ -22,14 +22,18 @@ class MainViewModel @Inject constructor(
     private val mGifs = MutableLiveData<List<GifModel>?>()
     val gifs: LiveData<List<GifModel>?> = mGifs
 
+    private val mLoading = MutableLiveData(false)
+    val loading: LiveData<Boolean> = mLoading
+
     fun getTrends() {
         viewModelScope.launch(Dispatchers.IO) {
-
+            mLoading.postValue(true)
             when (val result = repository.getTrending()) {
                 is Resource.Loading -> {
                     Log.d("hesam", "Loading")
                 }
                 is Resource.Success -> {
+                    mLoading.postValue(false)
                     Log.d("hesam", "the request has been successful")
                     Log.d("hesam", result.data.toString())
                     mGifs.postValue(result.data)
