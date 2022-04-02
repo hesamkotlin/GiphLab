@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="model"
             type="com.example.giphlab.shared.model.GifModel" />
@@ -11,22 +12,36 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_12">
 
         <TextView
-            android:lines="1"
             android:id="@+id/title_text"
-            app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="test"
-            android:text="@{model.title}"/>
+            android:ellipsize="end"
+            android:lines="1"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+            android:text="@{model.title}"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="test" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            gifUrl="@{model.imageUrl}"
-            app:layout_constraintTop_toBottomOf="@id/title_text"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/title_text"
+            app:strokeWidth="@dimen/space_2"
+            app:strokeColor="@color/colorPrimary">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                gifUrl="@{model.imageUrl}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.LargeComponent"
+                tools:src="@drawable/gif" />
+
+        </com.google.android.material.card.MaterialCardView>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
